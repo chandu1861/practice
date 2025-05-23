@@ -1,32 +1,34 @@
-Pipeline {
-   agent any
+pipeline {
+    agent any
 
-stgaes {
-  stage('cloning the code') {
-    steps {
-        git branch: 'main', url: 'https://github.com/chandu1861/practice.git'
-    }
-  }
+    stages {
+        stage('Cloning the code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/chandu1861/practice.git'
+            }
+        }
 
-  stage ('build the docker image') {
-    steps {
-        sh "docker build -t chandana1213/image ."
-    }
-  }
+        stage('Build the Docker image') {
+            steps {
+                sh 'docker build -t chandana1213/image:latest .'
+            }
+        }
 
-  stage ('creating container') {
-    steps {
-       sh "docker run -it --name c1 -p 9000:80 image" 
-    }
-  }
+        stage('Creating Docker container') {
+            steps {
+                sh 'docker run -d --name c1 -p 9000:80 chandana1213/image:latest'
+            }
+        }
 
-  stage ('login to docker') {
-    steps {
-        withCredentials([usernamePassword(credentialsId: '', passwordVariable: 'docker_password', usernameVariable: 'docker_username')]) {
-        sh "docker push chandana1213/image:latest"
-
+        stage('Login and Push to Docker Hub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh '''
+                        echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+                        docker push chandana1213/image:latest
+                    '''
+                }
+            }
         }
     }
-  }
 }
-  }
