@@ -7,7 +7,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/chandu1861/practice.git'
             }
         }
-
+        
         stage('Build the Docker image') {
             steps {
                 sh 'docker build -t chandana1213/image:latest .'
