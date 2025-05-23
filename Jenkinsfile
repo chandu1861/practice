@@ -10,7 +10,7 @@ stgaes {
 
   stage ('build the docker image') {
     steps {
-        sh "docker build -t image ."
+        sh "docker build -t chandana1213/image ."
     }
   }
 
@@ -23,7 +23,7 @@ stgaes {
   stage ('login to docker') {
     steps {
         withCredentials([usernamePassword(credentialsId: '', passwordVariable: 'docker_password', usernameVariable: 'docker_username')]) {
-        sh docker push chandana1213/img:latest
+        sh "docker push chandana1213/image:latest"
 
         }
     }
