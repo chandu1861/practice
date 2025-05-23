@@ -4,7 +4,7 @@ Pipeline {
 stgaes {
   stage("cloning the code") {
     steps {
-        sh git clone "https://github.com/chandu1861/practice.git" branch: 'main'
+        sh git url: 'https://github.com/chandu1861/practice.git', branch: 'main'
     }
   }
 
