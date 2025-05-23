@@ -21,7 +21,7 @@ stgaes {
   stage ("login to docker") {
     steps {
         withCredentials([usernamePassword(credentialsId: '', passwordVariable: 'docker_password', usernameVariable: 'docker_username')]) {
-    sh docker push chandana1213/img:latest
+        sh docker push chandana1213/img:latest
 
         }
     }
