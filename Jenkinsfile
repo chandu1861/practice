@@ -8,7 +8,7 @@ stgaes {
     }
   }
 
-  stage ("build the docker image")
+  stage ("build the docker image") {
     steps {
         sh docker build -t image .
     }
@@ -17,6 +17,8 @@ stgaes {
   stage ("creating container") {
     steps {
        sh docker run -it --name c1 -p 9000:80 image /bin/bash
+    }
+  }
 
   stage ("login to docker") {
     steps {
