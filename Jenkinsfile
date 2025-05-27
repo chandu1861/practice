@@ -32,7 +32,7 @@ pipeline {
         }
        stage('deploy to kubernetes') {
            steps {
-               withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: '', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+               withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubernetes', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
                   sh '''
                       kubectl delete --all pods
                       kubectl apply -f deployment.yaml
