@@ -8,5 +8,4 @@ spec:
       targetPort: 8000
   selector:
      name: cicd-deployment
-
-  type: ClusterIP
+  type: NodePort
