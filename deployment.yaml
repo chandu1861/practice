@@ -15,6 +15,6 @@ spec:
     spec:
      containers:
        - name: c01
-         image: nginx
+         image: chandana1213/image:latest
          ports:
            - containerPort: 80
