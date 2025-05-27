@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydeployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+       name: cicd-deployment
+  template:
+    metadata:
+     name: pod1
+     labels:
+       name: cicd-deployment
+    spec:
+     containers:
+       - name: c01
+         image: nginx
+         ports:
+           - containerPort: 80
