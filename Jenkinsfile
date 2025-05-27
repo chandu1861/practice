@@ -36,7 +36,7 @@ pipeline {
                   sh '''
                       kubectl delete --all pods
                       kubectl apply -f deployment.yaml
-                      kubectl apply -f service.yamlx
+                      kubectl apply -f service.yaml
                   '''
                }
            }   
